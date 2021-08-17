@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/fc3420a326.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>ToDo List App</title>
+  </head>
+
+  <body>
+    <!-- Whole container -->
+    <div class="page">
+      <div class="container">
+        <!-- title wth add list option -->
+        <header>
+          <div class="head-title">
+            <p id="task">Task</p>
+            <p id="lists">Lists</p>
+          </div>
+          <div class="add-list">
+            <div class="icon">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="add">
+              <p>Add List</p>
+            </div>
+          </div>
+        </header>
+        <!-- Cards  -->
+        <section class="cardSection">
+          <!-- card1 -->
+
+          <div class=" " id="">
+            <!-- taskTitle -->
+            
+              <p id="todoTitle"> </p>
+              <hr />
+            
+            <!-- strike after completed-->
+            <div class="completed"></div>
+              <p> </p>
+            </div>
+            <!-- pending -->
+            <div class="pending">
+                <i class="far fa-square"></i>
+
+              <div class="text">
+                <p> </p>
+              </div>
+            </div>
+          </div>
+        
+        </section>
+      </div>
+    </div>
+
+    <div class="new-list">
+      <div class="popup-add">
+        <p>Add New List</p>
+
+        <form action="">
+          <input type="text" id="newTask" name="newTask" />
+        </form>
+        <button id="add">ADD</button>
+      </div>
+    </div>
+
+    <script src="./app.js">
+      
+    </script>
+  </body>
+
+</html>
