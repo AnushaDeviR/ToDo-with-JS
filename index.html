@@ -16,7 +16,7 @@
     <!-- Whole container -->
     <div class="page">
       <div class="container">
-        <!-- title wth add list option -->
+        <!-- title with add list option -->
         <header>
           <div class="head-title">
             <p id="task">Task</p>
@@ -26,53 +26,47 @@
             <div class="icon">
               <i class="fas fa-plus-circle"></i>
             </div>
-            <div class="add">
-              <p>Add List</p>
-            </div>
+            <p>Add List</p>
           </div>
         </header>
-        <!-- Cards  -->
-        <section class="cardSection">
-          <!-- card1 -->
 
-          <div class=" " id="">
-            <!-- taskTitle -->
-            
-              <p id="todoTitle"> </p>
-              <hr />
-            
-            <!-- strike after completed-->
-            <div class="completed"></div>
-              <p> </p>
-            </div>
-            <!-- pending -->
-            <div class="pending">
-                <i class="far fa-square"></i>
-
-              <div class="text">
-                <p> </p>
-              </div>
-            </div>
-          </div>
-        
-        </section>
+        <!-- Task Cards  -->
+        <section class="cardSection"></section>
       </div>
     </div>
 
+    <!-- adding new task card-->
     <div class="new-list">
       <div class="popup-add">
-        <p>Add New List</p>
+        <p>Add New Task</p>
 
         <form action="">
           <input type="text" id="newTask" name="newTask" />
         </form>
-        <button id="add">ADD</button>
+
+        <div class="options">
+          <button id="add" onclick="addCard()">ADD</button>
+          <button id="cancelBtn" onclick="cancelPopup()">CANCEL</button>
+        </div>
       </div>
     </div>
 
-    <script src="./app.js">
-      
-    </script>
-  </body>
+    <!-- adding new sub task -->
+    <div class="new-subtask">
+      <div class="popup-add">
+        <p>Add New Subtask</p>
 
+        <form action="">
+          <input type="text" id="newsubTask" name="newsubTask" />
+        </form>
+
+        <div class="options">
+          <button id="addSubtask" onclick="addLists(list)">ADD</button>
+          <button id="cancelBtn" onclick="cancelPopup()">CANCEL</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
 </html>
