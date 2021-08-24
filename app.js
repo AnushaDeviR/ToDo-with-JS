@@ -18,12 +18,17 @@ var popupaddSubtask = document.querySelector(".new-subtask");
 
 var newSubtask = document.querySelector("#newsubTask");
 
+
 var subtasks
 
 let list
 let todo;
-
+let cardId
+let cards
 let listsSection = document.querySelector(".listsSection")
+
+let cardLists
+
 /* Add task */
 
 addTodo.addEventListener("click", () => { 
@@ -50,8 +55,6 @@ function addCard(){
         heading: title,
      }
 
-
-
     popupAdd.style.visibility =  "hidden";
     page.style.filter = "blur(0)";
     
@@ -62,16 +65,15 @@ function addCard(){
     nodeCard.innerHTML = `  <div class="cardsSection" id = "${todo.id}">
                             <p id="todoTitle" > ${todo.heading} </p>
                             <hr/>
-                            <div class = "listsSection">
-                            <ul class = "pending"> 
+                            
+                            <ul class = "listsSection"> 
                             
                             </ul>
-                            </div>
+                        
                             <div class="icon functions">
                             <div id="iconSubtask" onclick="addSubtask(event) ; parentCard(event)">
                             <i class="fas fa-plus-circle"></i>
                             </div>
-
                             <div id = "iconDelete" onlick="deleteCard()">
                             <i class="fas fa-trash-alt"></i>
                             </div>
@@ -92,32 +94,37 @@ function addSubtask(event) {
       
 }
 
+// assigning subtasks to main task card 
 
 function parentCard(event) { 
-    let cards = document.querySelectorAll(".card");
-
+     cards = document.querySelectorAll(".card");
+    console.log(event)
     // console.log(cards);
 
-    let cardId = event.path[3].getAttribute("id"); 
-    console.log("card id", cardId);
+     cardId = event.path[3].getAttribute("id"); 
 
+    console.log("card id", cardId);
+    
     cards.forEach(card => { 
+
+            console.log(card.getElementsByClassName("listsSection")[0])
+
         if(card.getAttribute("id") === cardId) { 
-             console.log(card.getElementsByClassName("listsSection")[0])
-             console.log("card id", card.getAttribute("id"));
+
             list = card.getElementsByClassName("listsSection")[0];
-            console.log("id matched")
+            
         } 
         else { 
-            console.log("id unmatched")
+            console.log("card id unmatched")
         }
         console.log(card)
     } )
     
-
 console.log(list)
 
 }
+
+//adding subtasks 
 
 function addLists(listsSection) {
 
@@ -127,6 +134,7 @@ function addLists(listsSection) {
 
 
     newSubtask.setAttribute("value", "defaultValue" );
+    
     const subtaskTitle = newSubtask.value;
 
     const subtaskLists = { 
@@ -134,12 +142,59 @@ function addLists(listsSection) {
         list: subtaskTitle
     }
 
-    const nodeList = `<li id="${subtaskLists.listId}"> ${subtaskLists.list} </li>`;
+    const nodeList = `<li class = "lists" id="${subtaskLists.listId}"> ${subtaskLists.list} <i class="far fa-check-circle" id="markDone" onclick = "markDone(event)"></i> <i class="far fa-times-circle"></i> </li>`;
 
     listsSection.innerHTML += nodeList ;
 
-    
     console.log(listsSection);
-        // console.log(todoList);
-        
     }
+
+
+    //mark a subtask as completed 
+function markDone(event) { 
+
+        console.log(event)
+        console.log(cardId)
+        console.log(list)
+
+    let listId = event.path[1].getAttribute("id"); 
+
+    //get the list of subtasks from its main task card  
+    cards.forEach(listSet => { 
+
+        //matches card id with list id
+
+         if(cardId === listSet.getAttribute("id")) { 
+                
+                cardLists = listSet.querySelectorAll(".lists");          
+                console.log(cardLists)
+
+                //get li elements within the ul set from the focusing card 
+
+            cardLists.forEach(li => { 
+                let cardList = li.id;
+                console.log(cardList)
+
+                //
+                if(cardList === listId) { 
+                    console.log("clicked list id:", li.id)
+
+                    let clickedList = document.getElementById(li.id)
+                    console.log(clickedList)
+                    clickedList.style.textDecoration = "line-through";
+                    clickedList.style.color = "green";
+                }
+                else { 
+                    console.log("ID of selected list unmatched")
+                }
+            })      
+                                
+            }
+        
+        else { 
+            console.log("Card Id and selected Card list unmatched")
+        }
+    
+    } )
+
+}
