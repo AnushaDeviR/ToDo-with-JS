@@ -2,7 +2,7 @@ let todoList = [];
 
 let count = 0;
 
-var addTodo = document.querySelector(".add-list"); 
+var addTodo = document.querySelector(".add-task"); 
 var page = document.querySelector(".page"); 
 
 var popupAdd = document.querySelector(".new-list");
@@ -28,7 +28,7 @@ let cards
 let listsSection = document.querySelector(".listsSection")
 
 let cardLists
-
+let clickedList
 /* Add task */
 
 addTodo.addEventListener("click", () => { 
@@ -74,7 +74,7 @@ function addCard(){
                             <div id="iconSubtask" onclick="addSubtask(event) ; parentCard(event)">
                             <i class="fas fa-plus-circle"></i>
                             </div>
-                            <div id = "iconDelete" onlick="deleteCard()">
+                            <div id = "iconDelete" onclick="deleteCard(event)">
                             <i class="fas fa-trash-alt"></i>
                             </div>
                             </div>
@@ -86,6 +86,30 @@ function addCard(){
 }
 
 /*adding subtasks*/
+
+function deleteCard(event) { 
+    cards = document.querySelectorAll(".card");
+    console.log(event)
+   // console.log(cards);
+    cardId = event.path[3].getAttribute("id"); 
+
+   console.log("card id", cardId);
+
+   cards.forEach(card => { 
+
+       if(card.getAttribute("id") === cardId) { 
+
+           card.remove();
+           
+       } 
+       else { 
+           console.log("card could not be deleted")
+       }
+       
+   } )
+   
+}
+
 
 function addSubtask(event) { 
     popupaddSubtask.style.visibility = "visible";
@@ -142,10 +166,10 @@ function addLists(listsSection) {
         list: subtaskTitle
     }
 
-    const nodeList = `<li class = "lists" id="${subtaskLists.listId}"> ${subtaskLists.list} <i class="far fa-check-circle" id="markDone" onclick = "markDone(event)"></i> <i class="far fa-times-circle"></i> </li>`;
+    const nodeList = `<li class = "lists" id="${subtaskLists.listId}"> ${subtaskLists.list} <i class="far fa-check-circle" id="markDone" onclick = "markDone(event)"></i> <i class="far fa-times-circle" id="markRemove" onclick = "markRemove(event)"></i> </li>`;
 
     listsSection.innerHTML += nodeList ;
-
+    todoList.push(subtaskLists);
     console.log(listsSection);
     }
 
@@ -153,48 +177,37 @@ function addLists(listsSection) {
     //mark a subtask as completed 
 function markDone(event) { 
 
-        console.log(event)
-        console.log(cardId)
-        console.log(list)
-
     let listId = event.path[1].getAttribute("id"); 
 
     //get the list of subtasks from its main task card  
     cards.forEach(listSet => { 
 
         //matches card id with list id
-
-         if(cardId === listSet.getAttribute("id")) { 
-                
+         if(cardId === listSet.getAttribute("id")) {         
                 cardLists = listSet.querySelectorAll(".lists");          
                 console.log(cardLists)
 
                 //get li elements within the ul set from the focusing card 
 
-            cardLists.forEach(li => { 
-                let cardList = li.id;
-                console.log(cardList)
-
-                //
-                if(cardList === listId) { 
-                    console.log("clicked list id:", li.id)
-
-                    let clickedList = document.getElementById(li.id)
-                    console.log(clickedList)
-                    clickedList.style.textDecoration = "line-through";
-                    clickedList.style.color = "green";
-                }
-                else { 
-                    console.log("ID of selected list unmatched")
-                }
-            })      
-                                
-            }
-        
+                cardLists.forEach(li => { 
+                    let cardList = li.id;
+                    console.log(cardList)
+    
+                    if(cardList === listId) { 
+                        console.log("clicked list id:", li.id)
+                        clickedList = document.getElementById(li.id)
+                        console.log(clickedList)
+                        clickedList.style.textDecoration = "line-through";
+                        clickedList.style.textDecorationColor = "#023436";
+                    }
+                    else { 
+                        console.log("ID of selected list unmatched")
+                    }
+            })               
+        }
         else { 
             console.log("Card Id and selected Card list unmatched")
         }
-    
     } )
-
 }
+

@@ -5,37 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karma:wght@300&display=swap" rel="stylesheet">
+
     <script
       src="https://kit.fontawesome.com/fc3420a326.js"
       crossorigin="anonymous"
     ></script>
-    <title>ToDo List App</title>
+    <title>ToDo List with JS</title>
   </head>
 
   <body>
     <!-- Whole container -->
     <div class="page">
       <div class="container">
-        <!-- title with add list option -->
+        <!-- title with add task option -->
         <header>
           <div class="head-title">
             <p id="task">Task</p>
             <p id="lists">Lists</p>
           </div>
-          <div class="add-list">
+          <div class="add-task">
             <div class="icon">
-              <i class="fas fa-plus-circle"></i>
+              <i class="fas fa-plus-circle" title="Click to add your tasks for the day"></i>
             </div>
-            <p>Add List</p>
+            <p>Add Task</p>
           </div>
         </header>
 
         <!-- Task Cards  -->
-        <section class="cardSection"></section>
+        <section class="cardSection">
+
+        </section>
       </div>
     </div>
 
+    <!-- add/ cancel options of tasks and subtasks-->
+
     <!-- adding new task card-->
+
     <div class="new-list">
       <div class="popup-add">
         <p>Add New Task</p>
@@ -52,6 +70,7 @@
     </div>
 
     <!-- adding new sub task -->
+
     <div class="new-subtask">
       <div class="popup-add">
         <p>Add New Subtask</p>

@@ -6,6 +6,13 @@ html {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+body { 
+  background: #2b5876;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: 'Karma', serif;
+}
+
 .container {
   margin: auto;
   max-width: 800px;
@@ -14,9 +21,14 @@ html {
 .icon {
   display: flex;
   flex-direction: row;
-  color: #e74c3c;
-  margin-right: 10px;
+  color: #fafaff;
+  margin-right: 20PX;
+ 
 }
+
+.add-task:hover { 
+    cursor: pointer;
+  } 
 
 /*header*/
 
@@ -24,28 +36,37 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
+/*title*/
+
 #task {
   display: inline-block;
   font-size: 50px;
-  font-weight: bolder;
+  font-weight: lighter;
+  color: #d6cfcb;
+  font-family: 'Old Standard TT', serif;
 }
+
 #lists {
   display: inline-block;
   font-size: 50px;
   margin-left: 10px;
   font-weight: lighter;
+  color: #d6cfcb;
+  font-family: 'Allison', cursive;
 }
 
-/*add icon*/
+/*add task icon*/
 
-.add-list {
+.add-task {
   display: flex;
   align-items: center;
   font-size: 40px;
 }
 
-.add-list p {
+.add-task p {
   margin-right: 30px;
+  color: #d6cfcb
 }
 
 /*Task cards section*/
@@ -57,19 +78,26 @@ section {
   align-items: center;
 }
 
+/*task cards */
+
 .card {
+  /* border: 1px solid #fff; */
+  border-radius: 15px;
   height: 350px;
   width: 220px;
-  border: 1px solid#E74C3C;
-  box-shadow: 4px 4px 10px rgb(172, 170, 170);
-  border-radius: 12px;
-}
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative; 
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+} 
+
+
 
 #todoTitle {
   font-size: 30px;
   text-align: center;
-  font-weight: lighter;
-  color: #e74c3c;
+  color: #edf2fb;
 }
 
 /*subtasks*/
@@ -87,39 +115,76 @@ ul {
 
 .lists {
   text-decoration: none;
-  color: black;
+  color: #ffffff;
   margin-top: 0;
   display: flex;
   padding-left: 20px;
   justify-content: flex-start;
   align-items: center;
-  font-size: 20px;
+  font-size: 25px;
   width: 200px;
 }
 
-.fa-square {
-  margin-right: 10px;
+ #markDone { 
+  font-size: 25px ;
+  margin-left: 70px;
+  color: #e5e5e5;
+  font-weight: lighter;
+  visibility: visible;
 }
 
-.icon .functions {
-  padding-left: 110px;
-  margin-top: 325px;
-  font-size: 30px;
+ #markRemove {
+  font-size: 25px;
+  margin-left: 10px;
+  color: #e5e5e5;
+  font-weight: lighter;
 }
 
-/* .icon .subTask:hover { 
-    cursor: pointer;
-  } */
+
+ #markDone:hover { 
+  cursor: pointer;
+  color: #cce3de;
+  
+}
+
+#markRemove:hover {
+  cursor: pointer;
+  color: #e4b1ab;
+  
+}
+
+.cardsSection .icon { 
+  position: fixed;
+  font-size: 25px;
+  bottom: 8px;
+  right: 16px;
+  gap: 20px;
+
+}
+
+#iconSubtask i:hover{ 
+  cursor: pointer;
+  color: #cce3de;
+}
+
+#iconDelete i:hover { 
+  cursor: pointer;
+  color: #e4b1ab;
+}
+
 
 /* pop-up cards*/
 .new-list,
 .new-subtask {
   visibility: hidden;
   position: absolute;
+  top: 50%;
+  left: 40%;
   height: 175px;
   width: 375px;
-  border: 1px solid#E74C3C;
-  background-color: white;
+  border: 1px solid#979dac;
+  background-color: #f8f8ff;
+ 
   box-shadow: 4px 4px 10px rgb(172, 170, 170);
   border-radius: 12px;
 }
@@ -135,10 +200,11 @@ ul {
   align-items: center;
   gap: 10px;
 }
+
 .new-list p,
 .new-subtask p {
-  font-size: large;
-  color: #e74c3c;
+  font-size: 22px;
+  color: #14292E;
   text-align: center;
   padding-top: 10px;
 }
@@ -147,15 +213,15 @@ ul {
 .new-subtask input {
   height: 25px;
   width: 230px;
-  border: 1px solid#E74C3C;
-  background-color: white;
+  border: 1px solid gray;
+  background-color: #f8f8ff;
   box-shadow: 0 0 4px rgb(172, 170, 170);
   border-radius: 5px;
 }
 
+
 button {
   text-align: center;
-  background-color: #e74c3c;
   border: none;
   border-radius: 20px;
   width: 80px;
@@ -165,6 +231,17 @@ button {
   font-size: medium;
 }
 
+#add, 
+#addSubtask { 
+  background-color: #2e6f95;
+}
+
+
+#cancelBtn { 
+  background-color: #892b64;
+}
+
 .options {
   display: flex;
+  gap: 20px;
 }
